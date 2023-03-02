@@ -27,19 +27,17 @@ jobs:
         uses: actions/checkout@v3
       - name: Build DocC
         run: |
-          xcodebuild docbuild -scheme DigiMeSDK \
-            -derivedDataPath /tmp/docbuild \
-            -destination 'generic/platform=iOS';
+          xcodebuild docbuild -scheme DigiMeSDK -derivedDataPath /tmp/docbuild -destination 'generic/platform=iOS';
           $(xcrun --find docc) process-archive \
             transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/DigiMeSDK.doccarchive \
             --hosting-base-path DigiMeSDK \
-            --output-path docs2;
-          echo "<script>window.location.href += \"/documentation/digimesdk\"</script>" > docs2/index.html;
+            --output-path docs;
+          echo "<script>window.location.href += \"/documentation/digimesdk\"</script>" > docs/index.html;
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload only docs directory
-          path: 'docs2'
+          path: 'docs'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
