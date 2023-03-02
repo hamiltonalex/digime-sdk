@@ -18,6 +18,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         .package(name: "Gzip", url: "https://github.com/1024jp/GzipSwift.git", from: "5.0.0"),
         .package(name: "ASN1Decoder", url: "https://github.com/filom/ASN1Decoder.git", from: "1.8.0"),
+		.package(url: "git@github.com:apple/swift-docc-plugin.git", branch: "main"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
